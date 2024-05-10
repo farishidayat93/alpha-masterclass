@@ -1,0 +1,76 @@
+
+{% extends "master.html" %}
+{% block title %}Database{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+<div class="px-3 pt-2">
+<h3>
+   Database Simple CRUD</a>
+</h3>
+
+<hr>
+{%- for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show " role="alert">
+   <strong class="mb-0">{{ message }}</strong>
+   <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{%- endfor %}
+<div class="d-flex">
+<h3>Clients </h3>
+<a class="btn btn-lg p-0 text-primary" href="{{ url_for('routes.new') }}" title="Add Client">
+   <i class="bi bi-plus-lg"></i>
+</a>
+</div>
+<hr>
+<div class="overflow-scroll">
+<table class="table ">
+   <thead>
+      <tr class="table-dark">
+         <th>Name</th>
+         <th>Email</th>
+         <th>Referral Email</th>
+         <th>Points</th>
+         <th class="text-center">Actions</th>
+      </tr>
+   </thead>
+
+   <tbody>
+      {% for client in clients %}
+         <tr>
+            <td>{{ client.name }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.referral_email }}</td>
+            <td>{{ client.points }}</td>
+            <td >
+               <div class="d-flex justify-content-evenly">
+               <button class="btn btn-sm d-inline text-success" href="{{ url_for('routes.update', client_id=client.id) }}" title="Edit">
+                  <i class="bi bi-pencil"></i></button>
+               |
+               <form id="delete_{{client.id}}" action="{{url_for('routes.delete')}}" method="post">
+                  <input type="hidden" name="delete" value="{{client.id}}">
+               <button class="btn btn-sm d-inline text-danger" href="#" title="Delete" onClick="confirmDelete({{client.id}})">
+                  <i class="bi bi-trash"></i>
+               </button>
+               </form>
+            </div>
+            </td>
+         </tr>
+      {% endfor %}
+   </tbody>
+</table>
+</div>
+</div>
+<script>
+   function confirmDelete(client_id) {
+      var txt;
+      if (confirm("Are you sure you want to delete this client?")) {
+         document.getElementById("delete_" + client_id).submit()
+      } else {
+        event.preventDefault();
+      }
+    }
+</script>
+{% endblock %}

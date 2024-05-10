@@ -1,0 +1,123 @@
+{% extends "master.html" %}
+{% block title %}Question 3 to 6{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+<div class="px-3 mt-3">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="q3-tab" data-bs-toggle="tab" data-bs-target="#q3" type="button" role="tab" aria-controls="q3" aria-selected="true"><h3>Question 3</h3></button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="q4-tab" data-bs-toggle="tab" data-bs-target="#q4" type="button" role="tab" aria-controls="q4" aria-selected="false"><h3>Question 4</h3></button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="q5-tab" data-bs-toggle="tab" data-bs-target="#q5" type="button" role="tab" aria-controls="q5" aria-selected="false"><h3>Question 5</h3></button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="q6-tab" data-bs-toggle="tab" data-bs-target="#q6" type="button" role="tab" aria-controls="q6" aria-selected="false"><h3>Question 6</h3></button>
+    </li>
+  </ul>
+  <div class="tab-content mt-1" id="myTabContent">
+    <div class="tab-pane fade show active" id="q3" role="tabpanel" aria-labelledby="q3-tab">
+      <h4>Scenario</h4>
+      <p>Our admin team would like to collect information about our client's subscription habits for business decision making.</p>
+      <h4>Task</h4>
+      <p>Share with us how would you implement the scenario - (you are free be as creative as you wish but robustness, practicality and simplicity would suffice)</p>
+      <h4>Questions of interests:</h4>
+      <ul>
+        <li>What would you implement? (Assuming a database and CRM of all the clients already exists)</li>
+        <li>How would you implement? (Tech-stacks used, any special features, computation algorithms etc.)</li>
+        <li>What kind of value would the admin team be able to get? (Hint: Tracking information is always useful)</li>
+      </ul>
+      <hr>
+      <h3>Answer</h3>
+      <ul>
+        <li>
+          We can already gather a lot of information by utilizing existing tools such as Google Analytics. This provides a variety of data including:
+          <ul>
+            <li>Traffic sources</li>
+            <li>Page hits</li>
+            <li>Path exploration</li>
+            <li>Browser information</li>
+            <li>Country of origin</li>
+          </ul>
+          These insights can be used in conjunction with our client database to better profile and map our target markets. Additionally, analyzing:
+          <ul>
+            <li>Page hits</li>
+            <li>Path explorations</li>
+          </ul>
+          allows us to monitor which features are being used most frequently or are enticing clients to subscribe. This information helps us understand what to prioritize for prospective clients and provides suggestions for improvements or upgrades.
+        </li>
+        <br>
+        <li>
+          From our existing database, we can generate reports to monitor subscription habits. This involves adding attributes such as:
+          <ul>
+            <li>Date of subscription/cancellation</li>
+            <li>Renewal counts</li>
+            <li>Whether a discount/promotion/bundle was considered</li>
+          </ul>
+          To achieve this, we ensure our database is properly time-stamped and tracks as many attributes as possible. Such functionality is available in various frameworks like Laravel or Django, either natively or through plugins.
+        </li>
+        <br>
+        <li>
+          Adding audits to our platform enhances our ability to monitor user activity in greater detail. Audits allow us to track user actions as they navigate the system, including:
+          <ul>
+            <li>Updating their information</li>
+            <li>Login times</li>
+            <li>Pages/modules accessed</li>
+          </ul>
+          This functionality can be incorporated using plugins available in frameworks such as Django or Laravel.
+          <br>
+        </li>
+      </ul>
+      
+    </div>
+    <div class="tab-pane fade" id="q4" role="tabpanel" aria-labelledby="q4-tab">
+      <h4>Scenario</h4>
+      <p>We have several marketing platforms for marketing and sales. Each platform has their own version of storing client’s data.</p>
+      <h4>Task</h4>
+      <p>Suggest a plausible solution that would be best to store the data for use in the future and methods for data cleaning.</p>
+      <hr>
+      <h3>Answer</h3>
+      <ul>
+        <li>Ideally the we have a separate centralized database server for the platforms to connect to.</li>
+        <li>While each platfomr might have different ways of storing clients data as in different attributes or differing values depending on the platform the client data can still using a <b>Master Table</b> that is reffrenced by each platform.</li>
+        <li>This will allow each platform to be customizable while still have only a single master table for the client information to ensure data consistency.</li>
+        <li>We can clean the data by identifying the the essential values of the client(ID, names or any universally used values) and use that as the master table which then the separate platform can assign attributes and values specific to them</li>
+        <li>This way we can avoid data duplication and make sure data consistency between platform and simplifies maintenance and updates by only having 1 source.</li>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="q5" role="tabpanel" aria-labelledby="q5-tab">
+      <h4>Scenario</h4>
+      <p>A free finance news API allows 10 calls per minute. Each API call would take in a financial keyword (ie. inflation) and would take 5 seconds to process its sentiment analysis to be sent to the end-user. As the number of end-users increases, the frequency of calls increases greatly.</p>
+      <h4>Task</h4>
+      <p>Suggest one or more implementations that would allow the end-user to still receive the requested info with lesser disturbances or delay.</p>
+      <hr>
+      <h3>Answer</h3>
+      <ul>
+        <li>Best method is using caching to increase responsiveness and reduce the resources used by the system by having the data stored somewhere and can be retrieved immediately instead of doing the process over and over again.</li>
+        <li>Some frameworks like Django have server side caching which you can configure to use whatever method is most suitable (memory, file, database(regular or redis)) depending on the scale and usage of the application.</li>
+        <li>In this case when a user or another user try to request another keyword that have been requested before, instead of taking 5 seconds to do the process, it can just send the data to the uses.</li>
+        <li>One thing to keep in mind is on the source data volatilty. Caching might not the best solution to highly volatile data since it will cause the data to be stale. One way to circumvent this(depending on the nature of the api) is to have a list of popular keyword and have trigger to prefecth the data for them when something in the backend is updated.</li>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="q6" role="tabpanel" aria-labelledby="q6-tab">
+      <h4>Scenario</h4>
+      <p>As the project leader of an AI chat bot, your team informs you that the number of active users is reducing and the average use time of the users are decreasing.</p>
+      <h4>Task</h4>
+      <p>Suggest any features that can be added into the chat bot that would increase its subscription value (economic value or user experience). Try to maximize value while minimizing the cost (economic cost, computational cost).</p>
+      <hr>
+      <h3>Answer</h3>
+      Some of my suggestions would be:
+      <ul>
+        <li>Interactiveness: adding interaction like games or quizzes</li>
+        <li>Multi-modal Support: add support for images, video and audio</li>
+        <li>Third Party Intergration: add functionalities to use other app/services through the chatbot like ordering a ride from grab, or buying an item through shopee, etc.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

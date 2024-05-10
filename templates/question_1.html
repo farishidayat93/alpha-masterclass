@@ -1,0 +1,44 @@
+{% extends "master.html" %}
+{% block title %}Question 1{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+<div class="px-3">
+    <h1>Question 1</h1>
+    <p>Our clients can refer their friends to join any of our events. They would share their email to identify the referral relationship. </p>
+    <hr>
+    <h2>Task:</h2> 
+    <p>
+        Use Flask to display the referral relationship for all clients under the main referrer. 
+        <br>Implement a basic UI that is user friendly. 
+        <br>Optional: Implementing a <a href = "{{ url_for('routes.crud') }}">database</a>.</p>
+    <br>
+    <p>A mock data set is provided in <a href="{{ url_for('static', filename = 'doc/client.csv') }}">client.csv</a></p>
+    <hr>
+    <h2>Solution</h2>
+    <form id="q1_input" action="#" method="post">
+        <input type="email" placeholder="Email" name="email"><input type="submit" value="Submit">
+    </form>
+    {%- for category, message in get_flashed_messages(with_categories = true) %}
+    <div class="alert alert-{{category}} alert-dismissible fade show " role="alert">
+    <strong class="mb-0">{{ message }}</strong>
+    <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%- endfor %}
+    {%- if output -%}
+    <div class="mt-2">
+        <ul>
+        {%- for key, value in output.items() recursive %}
+        {%- set indent = loop.depth * 2 %}  {# Adjust the multiplier (4 spaces) based on your preferred indentation level #}
+        <li style="margin-left: {{ indent }}ex;">{{ key }}</li>
+            {%- if value is mapping -%}
+                {{ loop(value.items()) }}
+            {%- endif -%}
+        {%- endfor %}
+        </ul>
+    </div>
+    {%- endif -%}
+</div>
+{% endblock %}

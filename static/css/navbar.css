@@ -1,0 +1,126 @@
+nav .dropdown-item:hover {
+    background-color: yellow;
+    color: black!important;
+}
+
+#nav-center{
+    position: fixed;
+    top: 16px;
+    left: calc(50% - 60px);
+    right: calc(50% - 60px);
+    width: 120px;
+    display: flex;
+    z-index: 2000;
+    justify-content: center;
+}
+#nav-right{
+    position: fixed;
+    top: 10px;
+
+    right: 10px;
+    z-index: 2000;
+}
+#toc_issue_nav{
+    text-align: center;
+    width: 100px;
+}
+.issue_nav{
+    height: fit-content;
+}
+.issue_nav>img{
+    display: block;
+}
+
+#issue_hover{
+    
+    color: #fff;
+}
+#all_issue{
+    display: none;
+    max-height: 30vh;
+    margin-top: 16px;
+    padding-bottom: 10px;
+    overflow-y: scroll;
+    grid-template-columns: auto;
+
+}
+
+
+#all_issue>a{
+    color: #fff;
+    text-decoration: none;
+    margin: 5px 0;
+    
+}
+#nav-center:hover #all_issue{
+    display: grid;
+}
+
+#all_issue>a:hover{
+    color: black;
+    text-decoration: none;
+    background-color: yellow;
+    
+}
+
+#filter-button-container{
+    position: fixed;
+    top: 8px;
+    left: 45px;
+    display: flex;
+    align-items: center;
+    margin: 8px;
+    height: 24px;
+    width: 60px;
+    z-index: 2000;
+}
+#filter-button-container>span.badge{
+    font-size: .6rem !important;
+}
+#filter-button{
+    width: 60px;
+}
+#nav_search_btn{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+#nav_search_box{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+#mag_tag{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    width: 100px;
+
+    
+}
+
+@media (min-width: 992px) {
+    #filter-button-container {
+        left: 300px;
+    }
+
+}
+@media (min-width: 601px) and (max-width: 991px) {
+    #nav-right{
+        right: 80px
+    }
+}
+@media (max-width: 600px){
+    #nav-right{
+        right: 11px;
+        top: 55px
+    }
+}
+
+.dropdown-menu li {
+    position: relative;
+    }
+.dropdown-menu .dropdown-submenu {
+list-style-type: none;
+padding-left: 0.5rem;
+font-size: small;
+}

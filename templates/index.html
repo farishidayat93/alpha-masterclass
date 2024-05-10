@@ -1,0 +1,56 @@
+{% extends "master.html" %}
+{% block title %}Home Page{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet"  href="{{ url_for('static', filename = 'css/home.css') }}">
+
+{% endblock %}
+{% block content %}
+<div id="container">
+    <h1 class="ps-2">AlphaMasterclass Technical Interview (Flask App)</h1>
+    <hr class="mb-2">
+  <div id="home_main">
+    <a href = "{{ url_for('routes.crud') }}">
+    <div class="home_sub">
+        <h2>Database</h2>
+        <div class="sub_main">
+        <div></div>
+        <h3>Optional Database CRUD using SQLite</h3>
+            <div></div>
+        </div>
+    </div>
+    </a>
+    <a href = "{{ url_for('routes.question_1') }}">
+    <div class="home_sub">
+        <h2>Question1</h2>
+        <div class="sub_main">
+        <div></div>
+            <h3>Q1</h3>
+            <div></div>
+        </div>
+    </div>
+    </a>
+    <a href = "{{ url_for('routes.question_2') }}">
+    <div class="home_sub">
+        <h2>Question 2</h2>
+        <div class="sub_main">
+        <div></div>
+            <h3>Q2</h3>
+            <div></div>
+        </div>
+    </div>
+    </a>    
+    <a href = "{{ url_for('routes.question_36') }}">
+    <div class="home_sub">
+        <h2>Question 3-6</h2>
+        <div class="sub_main">
+        <div></div>
+            <h3>Q 3-6</h3>
+            <div></div>
+        </div>
+    </div>
+    </a>
+ 
+  </div>
+  </div>
+{% endblock %}
