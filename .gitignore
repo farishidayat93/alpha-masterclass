@@ -1,0 +1,6 @@
+__pycache__/
+Lib/
+Scripts/
+Include/
+#.env (commented_because test)
+#var/(commented_because test)
