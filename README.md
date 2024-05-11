@@ -1,5 +1,7 @@
 The app was created on python 3.10.12
+
 Depending on your machine some command will differ a bit, (python -> python3) or (py -> py3)
+
 Basic insctructions 
 - git clone the repository (or download the repository into a directory)
 - create virtual enviroment in the directorty. (python -m venv .) or  (py -m venv .)
