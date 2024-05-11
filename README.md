@@ -1,0 +1,6 @@
+- git clone the repository
+- create virtual enviroment in the directorty
+- activate venv
+- install the python packages (pip install -r requirements.py)
+- run the main.py
+- the app will be running in localhost:5000
